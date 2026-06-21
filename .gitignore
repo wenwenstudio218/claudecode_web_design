@@ -20,3 +20,8 @@ logs/
 dist/
 build/
 .cache/
+
+# Test / preview artifacts
+.playwright-mcp/
+shot-*.jpeg
+shot-*.png
