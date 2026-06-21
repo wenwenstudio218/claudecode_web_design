@@ -25,3 +25,5 @@ build/
 .playwright-mcp/
 shot-*.jpeg
 shot-*.png
+sec-*.jpeg
+m-*.jpeg

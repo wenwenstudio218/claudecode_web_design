@@ -269,6 +269,82 @@
   footer .f-note{color:var(--porcelain-dim);font-size:.8rem;line-height:1.9;max-width:34ch}
   footer .f-meta{color:var(--porcelain-dim);font-size:.72rem;letter-spacing:.1em;text-align:right}
 
+  /* ========== Content sections ========== */
+  .section{position:relative;z-index:10;background:var(--obsidian);padding:8.5rem max(6vw,1.5rem);scroll-margin-top:88px}
+  .section + .section{border-top:1px solid rgba(201,162,75,.08)}
+  .section-head{max-width:760px;margin:0 auto 4.5rem;text-align:center}
+  .section-head .eyebrow{justify-content:center}
+  .section-title{font-family:"Cormorant Garamond",serif;font-weight:300;font-size:clamp(2.6rem,6vw,4.4rem);line-height:1.06}
+  .section-title em{font-style:italic;color:var(--ormolu-bright)}
+  .section-head .desc{margin-top:1.3rem;color:var(--porcelain-dim);font-size:1rem;line-height:1.85}
+
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* About */
+  .about{display:grid;grid-template-columns:1.05fr .95fr;gap:4.5rem;max-width:1180px;margin:0 auto;align-items:center}
+  .about-statement{font-family:"Cormorant Garamond",serif;font-style:italic;font-weight:300;font-size:clamp(1.7rem,3.2vw,2.6rem);line-height:1.5;margin-bottom:1.8rem}
+  .about-statement em{font-style:normal;color:var(--ormolu-bright)}
+  .about-body p{color:var(--porcelain-dim);line-height:1.95;margin-bottom:1.1rem;font-size:.96rem}
+  .about-media{border-radius:26px;overflow:hidden;border:1px solid var(--glass-line);background:#000;aspect-ratio:4/5;box-shadow:0 40px 90px -50px rgba(0,0,0,.9)}
+  .about-media img{width:100%;height:100%;object-fit:cover;display:block;opacity:.96}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;max-width:1180px;margin:4.5rem auto 0;border-top:1px solid var(--glass-line);padding-top:2.6rem}
+  .stat .num{font-family:"Cormorant Garamond",serif;font-size:clamp(2.4rem,4vw,3.2rem);color:var(--porcelain);line-height:1}
+  .stat .num em{font-style:italic;color:var(--ormolu-bright)}
+  .stat .lbl{font-family:"IBM Plex Mono",monospace;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--porcelain-dim);margin-top:.7rem}
+
+  /* Product rows */
+  .prod-row{display:grid;grid-template-columns:1fr 1fr;gap:4rem;max-width:1180px;margin:0 auto 5.5rem;align-items:center}
+  .prod-row:last-child{margin-bottom:0}
+  .prod-row.flip .prod-media{order:2}
+  .prod-media{border-radius:24px;overflow:hidden;border:1px solid var(--glass-line);background:#000;aspect-ratio:16/11;box-shadow:0 40px 90px -55px rgba(201,162,75,.3)}
+  .prod-media img{width:100%;height:100%;object-fit:cover;display:block}
+  .prod-text .idx{font-family:"IBM Plex Mono",monospace;color:var(--ormolu);letter-spacing:.22em;font-size:.7rem}
+  .prod-text h3{font-family:"Cormorant Garamond",serif;font-weight:300;font-size:clamp(2rem,4vw,3rem);margin:.9rem 0 1.1rem;line-height:1.12}
+  .prod-text h3 em{font-style:italic;color:var(--ormolu-bright)}
+  .prod-text p{color:var(--porcelain-dim);line-height:1.92;font-size:.97rem}
+  .prod-text ul{margin-top:1.6rem;list-style:none}
+  .prod-text li{display:flex;gap:.8rem;padding:.6rem 0;color:var(--porcelain);font-size:.9rem;border-bottom:1px solid rgba(201,162,75,.1)}
+  .prod-text li::before{content:"—";color:var(--ormolu);flex-shrink:0}
+
+  /* Pricing */
+  .pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;max-width:1180px;margin:0 auto;align-items:stretch}
+  .price-card{position:relative;background:var(--glass);backdrop-filter:blur(18px) saturate(120%);-webkit-backdrop-filter:blur(18px) saturate(120%);border:1px solid var(--glass-line);border-radius:24px;padding:2.4rem 2rem;display:flex;flex-direction:column}
+  .price-card.feature{border-color:rgba(143,166,191,.5);box-shadow:0 40px 90px -45px rgba(143,166,191,.4)}
+  .price-card .badge{position:absolute;top:-1px;right:1.6rem;transform:translateY(-50%);background:linear-gradient(180deg,var(--dusk-blue),#6f879e);color:#0c1218;font-family:"IBM Plex Mono",monospace;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;padding:.4rem .8rem;border-radius:8px}
+  .price-card .tier{font-family:"IBM Plex Mono",monospace;letter-spacing:.2em;text-transform:uppercase;font-size:.68rem;color:var(--ormolu)}
+  .price-card.feature .tier{color:var(--dusk-blue)}
+  .price-card h3{font-family:"Cormorant Garamond",serif;font-weight:300;font-style:italic;font-size:2rem;margin:.7rem 0 1.1rem}
+  .price-card .amt{font-family:"Cormorant Garamond",serif;font-size:2.7rem;color:var(--porcelain);line-height:1}
+  .price-card .amt small{font-size:.95rem;color:var(--porcelain-dim);font-family:"Inter",sans-serif}
+  .price-card .note{color:var(--porcelain-dim);font-size:.82rem;line-height:1.7;margin:.9rem 0 1.6rem;min-height:3em}
+  .price-card ul{list-style:none;margin:0 0 2rem;flex:1}
+  .price-card li{display:flex;gap:.6rem;padding:.62rem 0;font-size:.85rem;color:var(--porcelain);border-bottom:1px solid rgba(201,162,75,.1)}
+  .price-card li::before{content:"✓";color:var(--ormolu);flex-shrink:0}
+  .price-card.feature li::before{color:var(--dusk-blue)}
+
+  /* Contact */
+  .contact{display:grid;grid-template-columns:.85fr 1.15fr;gap:4.5rem;max-width:1100px;margin:0 auto}
+  .contact-info .lead{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:1.7rem;line-height:1.5;margin-bottom:2rem;color:var(--porcelain)}
+  .contact-info .row{padding:1.1rem 0;border-top:1px solid var(--glass-line)}
+  .contact-info .row .k{font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ormolu);margin-bottom:.4rem}
+  .contact-info .row .v{color:var(--porcelain-dim);font-size:.92rem;line-height:1.7}
+  .form-card{background:var(--glass);backdrop-filter:blur(20px) saturate(120%);-webkit-backdrop-filter:blur(20px) saturate(120%);border:1px solid var(--glass-line);border-radius:26px;padding:2.5rem}
+  .field{margin-bottom:1.4rem}
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem}
+  .field label{display:block;font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--porcelain-dim);margin-bottom:.6rem}
+  .field input,.field select,.field textarea{width:100%;background:rgba(255,255,255,.03);border:1px solid var(--glass-line);border-radius:12px;padding:.9rem 1rem;color:var(--porcelain);font-family:"Inter",sans-serif;font-size:.95rem;transition:border-color .3s,background .3s}
+  .field textarea{resize:vertical;min-height:120px}
+  .field input::placeholder,.field textarea::placeholder{color:rgba(237,230,216,.32)}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--ormolu);background:rgba(201,162,75,.05)}
+  .field select{appearance:none;-webkit-appearance:none;cursor:pointer;background-image:linear-gradient(45deg,transparent 50%,var(--ormolu) 50%),linear-gradient(135deg,var(--ormolu) 50%,transparent 50%);background-position:calc(100% - 20px) center,calc(100% - 14px) center;background-size:6px 6px,6px 6px;background-repeat:no-repeat}
+  .form-card .btn{margin-top:.4rem}
+  .form-success{display:none;text-align:center;padding:3rem 1rem}
+  .form-success.show{display:block}
+  .form-success .mark{font-size:2.4rem;color:var(--ormolu-bright);font-family:"Cormorant Garamond",serif}
+  .form-success h4{font-family:"Cormorant Garamond",serif;font-weight:300;font-size:1.8rem;margin:.8rem 0 .6rem}
+  .form-success p{color:var(--porcelain-dim);font-size:.9rem;line-height:1.8}
+
   /* ---------- Responsive ---------- */
   @media (max-width:860px){
     .nav-links{display:none}
@@ -281,11 +357,25 @@
     .grid{grid-template-columns:1fr 1fr}
     .title{font-size:clamp(3.4rem,22vw,7rem)}
   }
+  @media (max-width:980px){
+    .section{padding:6rem max(6vw,1.4rem)}
+    .about{grid-template-columns:1fr;gap:2.8rem}
+    .about-media{aspect-ratio:16/11;max-width:520px;margin-inline:auto}
+    .stats{grid-template-columns:repeat(2,1fr);gap:2rem}
+    .prod-row{grid-template-columns:1fr;gap:1.8rem;margin-bottom:4rem}
+    .prod-row.flip .prod-media{order:0}
+    .pricing{grid-template-columns:1fr;max-width:480px}
+    .contact{grid-template-columns:1fr;gap:2.6rem}
+  }
+
   @media (max-width:520px){
     .grid{grid-template-columns:1fr 1fr;gap:.6rem}
     .card{padding:1rem .9rem}
     .card h4{font-size:1.25rem}
     .reserve-card{padding:1.5rem 1.3rem}
+    .field-row{grid-template-columns:1fr}
+    .form-card{padding:1.6rem 1.3rem}
+    .stats{grid-template-columns:1fr 1fr;gap:1.4rem}
   }
 
   @media (prefers-reduced-motion:reduce){
@@ -293,6 +383,7 @@
     #glow{animation:none;opacity:.8}
     .scroll-hint .bar{animation:none}
     .loader-ring{animation:none}
+    .reveal{opacity:1;transform:none;transition:none}
   }
 </style>
 </head>
@@ -309,10 +400,10 @@
   <nav>
     <div class="brand">Rouvel</div>
     <div class="nav-links">
-      <a href="#top">箱體</a>
-      <a href="#top">機芯</a>
-      <a href="#top">工坊</a>
-      <a href="#top">預訂</a>
+      <a href="#about">工坊</a>
+      <a href="#product">產品</a>
+      <a href="#pricing">價格</a>
+      <a href="#contact">聯絡</a>
     </div>
     <button class="nav-play" type="button">▶ 試聽樂曲</button>
   </nav>
@@ -383,14 +474,193 @@
               <div><dt>瓷偶</dt><dd>Hand-painted</dd></div>
               <div><dt>交期</dt><dd>約 90 日</dd></div>
             </dl>
-            <button class="btn" type="button">立即預訂</button>
-            <button class="btn ghost" type="button">預約鑑賞</button>
+            <a class="btn" href="#contact">立即預訂</a>
+            <a class="btn ghost" href="#contact">預約鑑賞</a>
           </div>
         </div>
       </div>
 
     </div>
   </div>
+
+  <!-- ABOUT -->
+  <section class="section" id="about">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="rule"></span><span class="mono">La Maison · 工坊</span><span class="rule"></span></div>
+      <h2 class="section-title">自 1887 年，<em>巴黎</em>的一張工作檯</h2>
+    </div>
+    <div class="about reveal">
+      <div class="about-text">
+        <p class="about-statement">「我們不量產時間，<br/>我們<em>替每一具盒子，校準它要唱的那首歌。</em>」</p>
+        <div class="about-body">
+          <p>Maison Rouvel 始於塞納河左岸的一間小工坊。第一代師傅 Émile Rouvel 原是鐘錶匠，他相信一只盒子若要保存一段旋律，就該以製作機械錶的嚴謹去對待每一根梳齒。</p>
+          <p>一百三十餘年來，配方未變：巴西玫瑰木、手工鎏金銅飾、逐針植入的黃銅滾筒。每一具 Aurelia 由單一師傅從選材到調音獨力完成，平均耗時九十日，並在盒底刻下他的簽名與編號。</p>
+        </div>
+      </div>
+      <div class="about-media"><img src="frames/frame_0001.jpg" alt="閤蓋的 Aurelia 八角音樂盒" loading="lazy" /></div>
+    </div>
+    <div class="stats reveal">
+      <div class="stat"><div class="num"><em>1887</em></div><div class="lbl">創立年份</div></div>
+      <div class="stat"><div class="num">200<em>+</em></div><div class="lbl">道手工工序</div></div>
+      <div class="stat"><div class="num">90<em>日</em></div><div class="lbl">單具製作期</div></div>
+      <div class="stat"><div class="num">50</div><div class="lbl">全球限量</div></div>
+    </div>
+  </section>
+
+  <!-- PRODUCT -->
+  <section class="section" id="product">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="rule"></span><span class="mono">Le Produit · 產品介紹</span><span class="rule"></span></div>
+      <h2 class="section-title">一具盒子，<em>三段</em>工藝</h2>
+      <p class="desc">從閤上的箱體到旋轉的瓷偶，Aurelia 的每一層都值得單獨被看見。</p>
+    </div>
+
+    <div class="prod-row reveal">
+      <div class="prod-media"><img src="frames/frame_0008.jpg" alt="玫瑰木箱體與鎏金銅飾" loading="lazy" /></div>
+      <div class="prod-text">
+        <span class="idx">01 — Le Coffret · 箱體</span>
+        <h3>玫瑰木與<em>鎏金</em></h3>
+        <p>八角箱體取自巴西玫瑰木實木，木紋對花拼接，八個立面各嵌一片手工鎏金（ormolu）銅飾。鎖孔處的女神紋章以失蠟法翻鑄，再經師傅手工修飾每一道捲草。</p>
+        <ul>
+          <li>巴西玫瑰木實木 · 八面對紋拼接</li>
+          <li>鎏金銅飾 · 失蠟翻鑄手工修飾</li>
+          <li>可開啟黃銅鎖具 · 附編號鑰匙</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="prod-row flip reveal">
+      <div class="prod-media"><img src="frames/frame_0110.jpg" alt="十八音鋼梳與黃銅機芯" loading="lazy" /></div>
+      <div class="prod-text">
+        <span class="idx">02 — Le Mouvement · 機芯</span>
+        <h3>十八音<em>手工植針</em>機芯</h3>
+        <p>掀蓋，鎏金機芯第一次見光。黃銅滾筒上的每一根針都由師傅在放大鏡下逐一植入，撥動十八枚調校鋼梳——音色的全部祕密，就藏在這零點幾毫米的偏差裡。</p>
+        <ul>
+          <li>十八音調校鋼梳 · 逐枚以耳校準</li>
+          <li>手工植針黃銅滾筒</li>
+          <li>滿弦約奏〈時辰圓舞曲〉2 分 40 秒</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="prod-row reveal">
+      <div class="prod-media"><img src="frames/frame_0192.jpg" alt="手繪瓷偶芭蕾舞者與水銀鏡" loading="lazy" /></div>
+      <div class="prod-text">
+        <span class="idx">03 — La Danseuse · 瓷偶</span>
+        <h3>手繪瓷偶與<em>水銀鏡</em></h3>
+        <p>內蓋斜切一面水銀鏡，當瓷偶隨弦緩緩啟轉，你會在鏡中同時看見她的背面——一支舞，看見兩次。瓷偶的蕾絲裙襬以薄胎瓷燒製，藍紗由師傅一筆筆手繪。</p>
+        <ul>
+          <li>薄胎手繪瓷偶 · 可隨機芯旋轉</li>
+          <li>內蓋斜切水銀鏡</li>
+          <li>裙色可選：瓷藍 · 玫瑰 · 象牙</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="section" id="pricing">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="rule"></span><span class="mono">Les Éditions · 價格方案</span><span class="rule"></span></div>
+      <h2 class="section-title">擁有 <em>Aurelia</em></h2>
+      <p class="desc">三種版本，皆全球限量 50 件、附師傅簽名證書與終身保養。</p>
+    </div>
+    <div class="pricing">
+      <div class="price-card reveal">
+        <span class="tier">Édition Classique</span>
+        <h3>經典版</h3>
+        <div class="amt">NT$ 168,000</div>
+        <p class="note">標準瓷藍舞者，奏〈時辰圓舞曲〉。最純粹的 Aurelia。</p>
+        <ul>
+          <li>玫瑰木箱體 · 鎏金銅飾</li>
+          <li>十八音手工機芯</li>
+          <li>編號證書 · 終身保養</li>
+        </ul>
+        <a class="btn ghost" href="#contact">預約鑑賞</a>
+      </div>
+
+      <div class="price-card feature reveal">
+        <span class="badge">最受青睞</span>
+        <span class="tier">Édition Signature</span>
+        <h3>典藏版</h3>
+        <div class="amt">NT$ 268,000</div>
+        <p class="note">可選裙色與盒底刻字，加配天鵝絨呈獻盒。為贈禮而生。</p>
+        <ul>
+          <li>含經典版全部工藝</li>
+          <li>裙色客製 · 盒底個人刻字</li>
+          <li>天鵝絨呈獻盒 · 優先製作</li>
+        </ul>
+        <a class="btn" href="#contact">立即預訂</a>
+      </div>
+
+      <div class="price-card reveal">
+        <span class="tier">Sur Mesure</span>
+        <h3>客製委製</h3>
+        <div class="amt">報價洽詢</div>
+        <p class="note">指定樂曲、自選木料與舞者造型，由首席師傅專案承製。</p>
+        <ul>
+          <li>指定樂曲植針</li>
+          <li>木料與舞者全客製</li>
+          <li>首席師傅專案 · 約 180 日</li>
+        </ul>
+        <a class="btn ghost" href="#contact">洽談委製</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="rule"></span><span class="mono">Contact · 聯絡我們</span><span class="rule"></span></div>
+      <h2 class="section-title">預約一次<em>鑑賞</em></h2>
+      <p class="desc">留下您的需求，我們將於兩個工作天內以 email 親自回覆。</p>
+    </div>
+    <div class="contact reveal">
+      <div class="contact-info">
+        <p class="lead">歡迎蒞臨展間，<br/>親耳聽一次 Aurelia。</p>
+        <div class="row"><div class="k">台北展間</div><div class="v">台北市大安區仁愛路三段 16 號 2 樓<br/>採預約制</div></div>
+        <div class="row"><div class="k">Email</div><div class="v">salon@maison-rouvel.com</div></div>
+        <div class="row"><div class="k">電話</div><div class="v">+886 2 2771 0887</div></div>
+        <div class="row"><div class="k">開放時間</div><div class="v">週二至週六 11:00 – 19:00</div></div>
+      </div>
+
+      <div class="form-card">
+        <form id="contactForm" novalidate>
+          <div class="field-row">
+            <div class="field">
+              <label for="cf-name">姓名</label>
+              <input id="cf-name" name="name" type="text" placeholder="您的稱呼" required />
+            </div>
+            <div class="field">
+              <label for="cf-email">Email</label>
+              <input id="cf-email" name="email" type="email" placeholder="you@example.com" required />
+            </div>
+          </div>
+          <div class="field">
+            <label for="cf-type">詢問類型</label>
+            <select id="cf-type" name="type">
+              <option>預約鑑賞</option>
+              <option>預訂 經典版</option>
+              <option>預訂 典藏版</option>
+              <option>客製委製洽詢</option>
+              <option>保養與維修</option>
+              <option>其他</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="cf-msg">訊息</label>
+            <textarea id="cf-msg" name="message" placeholder="想預約的時段、想了解的細節…"></textarea>
+          </div>
+          <button class="btn" type="submit">送出預約</button>
+        </form>
+        <div class="form-success" id="formSuccess">
+          <div class="mark">✦</div>
+          <h4>已收到您的訊息</h4>
+          <p>謝謝您，<span id="successName">貴賓</span>。<br/>我們將於兩個工作天內以 email 與您聯繫。</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- FOOTER -->
   <footer>
@@ -399,7 +669,7 @@
       <p class="f-note" style="margin-top:1rem">巴黎音樂盒工坊 · 自 1887 年起，每一具皆由單一師傅完成，並附手寫簽名證書。</p>
     </div>
     <div class="f-meta">
-      <p>箱體 · 機芯 · 工坊 · 預訂</p>
+      <p><a href="#about">工坊</a> · <a href="#product">產品</a> · <a href="#pricing">價格</a> · <a href="#contact">聯絡</a></p>
       <p style="margin-top:.6rem">© 2026 Maison Rouvel. Tous droits réservés.</p>
     </div>
   </footer>
@@ -534,10 +804,16 @@
       el.style.transform = base + " translateY(" + lift + "px)";
       el.style.visibility = o <= 0.001 ? "hidden" : "visible";
     }
-    // winder
+    // winder — fade out once the reveal is complete (entering content sections)
     var pct = Math.round(progress*100);
     winderFill.style.height = pct + "%";
     winderPct.textContent = String(pct).padStart(2,"0");
+    var winder = document.getElementById("winder");
+    if(winder){
+      var hide = progress > 0.992;
+      winder.style.opacity = hide ? "0" : "1";
+      winder.style.transition = "opacity .5s var(--ease)";
+    }
   }
 
   // capture each panel's base transform (some are centered)
@@ -572,6 +848,40 @@
 
   resize();
   preload();
+})();
+
+/* ----- content sections: scroll reveal + contact form ----- */
+(function(){
+  "use strict";
+  var reduce = window.matchMedia("(prefers-reduced-motion:reduce)").matches;
+  var items = document.querySelectorAll(".reveal");
+  if(reduce || !("IntersectionObserver" in window)){
+    items.forEach(function(el){ el.classList.add("in"); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }
+      });
+    }, {threshold:0.14, rootMargin:"0px 0px -8% 0px"});
+    items.forEach(function(el){ io.observe(el); });
+  }
+
+  var form = document.getElementById("contactForm");
+  if(form){
+    form.addEventListener("submit", function(ev){
+      ev.preventDefault();
+      var name = (document.getElementById("cf-name").value || "").trim();
+      var email = (document.getElementById("cf-email").value || "").trim();
+      if(!name || !email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){
+        var firstBad = !name ? "cf-name" : "cf-email";
+        document.getElementById(firstBad).focus();
+        return;
+      }
+      document.getElementById("successName").textContent = name;
+      form.style.display = "none";
+      document.getElementById("formSuccess").classList.add("show");
+    });
+  }
 })();
 </script>
 </body>
