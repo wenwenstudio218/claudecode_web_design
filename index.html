@@ -4,6 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Aurelia — Maison Rouvel</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2307060A'/%3E%3Ctext x='16' y='23' font-size='20' text-anchor='middle' fill='%23C9A24B' font-family='Georgia,serif'%3ER%3C/text%3E%3C/svg%3E" />
 <meta name="description" content="Aurelia 八角音樂盒。在你轉動之前，它一直守著一個祕密。Maison Rouvel 巴黎工坊，限量 50 件編號發行。" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -237,8 +238,10 @@
   }
   .brand{font-family:"Cormorant Garamond",serif;font-size:1.4rem;letter-spacing:.34em;text-transform:uppercase;padding-left:.2rem}
   .nav-links{display:flex;gap:2rem}
-  .nav-links a{font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--porcelain-dim);transition:color .3s}
+  .nav-links a{position:relative;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--porcelain-dim);transition:color .3s}
   .nav-links a:hover{color:var(--ormolu-bright)}
+  .nav-links a.active{color:var(--ormolu-bright)}
+  .nav-links a.active::after{content:"";position:absolute;left:0;right:0;bottom:-7px;height:1px;background:var(--ormolu);box-shadow:0 0 8px rgba(201,162,75,.6)}
   .nav-play{
     display:inline-flex;align-items:center;gap:.5rem;
     padding:.5rem .95rem;border-radius:11px;
@@ -247,6 +250,8 @@
     cursor:pointer;transition:background .3s,border-color .3s;
   }
   .nav-play:hover{background:rgba(201,162,75,.16);border-color:var(--ormolu)}
+  .nav-play.playing{background:rgba(201,162,75,.2);border-color:var(--ormolu)}
+  .nav-play .play-ico{display:inline-block;min-width:.8em;text-align:center}
 
   /* progress winder (right rail signature) */
   #winder{
@@ -405,8 +410,12 @@
       <a href="#pricing">價格</a>
       <a href="#contact">聯絡</a>
     </div>
-    <button class="nav-play" type="button">▶ 試聽樂曲</button>
+    <button class="nav-play" type="button" id="playBtn" aria-pressed="false">
+      <span class="play-ico" id="playIco">▶</span><span id="playTxt">試聽樂曲</span>
+    </button>
   </nav>
+
+  <audio id="bgm" src="audio/aurelia.m4a" loop preload="none"></audio>
 
   <!-- RIGHT WINDER -->
   <div id="winder">
@@ -497,7 +506,7 @@
           <p>一百三十餘年來，配方未變：巴西玫瑰木、手工鎏金銅飾、逐針植入的黃銅滾筒。每一具 Aurelia 由單一師傅從選材到調音獨力完成，平均耗時九十日，並在盒底刻下他的簽名與編號。</p>
         </div>
       </div>
-      <div class="about-media"><img src="frames/frame_0001.jpg" alt="閤蓋的 Aurelia 八角音樂盒" loading="lazy" /></div>
+      <div class="about-media"><img src="frames/frame_0001.webp" alt="閤蓋的 Aurelia 八角音樂盒" loading="lazy" /></div>
     </div>
     <div class="stats reveal">
       <div class="stat"><div class="num"><em>1887</em></div><div class="lbl">創立年份</div></div>
@@ -516,7 +525,7 @@
     </div>
 
     <div class="prod-row reveal">
-      <div class="prod-media"><img src="frames/frame_0008.jpg" alt="玫瑰木箱體與鎏金銅飾" loading="lazy" /></div>
+      <div class="prod-media"><img src="frames/frame_0008.webp" alt="玫瑰木箱體與鎏金銅飾" loading="lazy" /></div>
       <div class="prod-text">
         <span class="idx">01 — Le Coffret · 箱體</span>
         <h3>玫瑰木與<em>鎏金</em></h3>
@@ -530,7 +539,7 @@
     </div>
 
     <div class="prod-row flip reveal">
-      <div class="prod-media"><img src="frames/frame_0110.jpg" alt="十八音鋼梳與黃銅機芯" loading="lazy" /></div>
+      <div class="prod-media"><img src="frames/frame_0110.webp" alt="十八音鋼梳與黃銅機芯" loading="lazy" /></div>
       <div class="prod-text">
         <span class="idx">02 — Le Mouvement · 機芯</span>
         <h3>十八音<em>手工植針</em>機芯</h3>
@@ -544,7 +553,7 @@
     </div>
 
     <div class="prod-row reveal">
-      <div class="prod-media"><img src="frames/frame_0192.jpg" alt="手繪瓷偶芭蕾舞者與水銀鏡" loading="lazy" /></div>
+      <div class="prod-media"><img src="frames/frame_0192.webp" alt="手繪瓷偶芭蕾舞者與水銀鏡" loading="lazy" /></div>
       <div class="prod-text">
         <span class="idx">03 — La Danseuse · 瓷偶</span>
         <h3>手繪瓷偶與<em>水銀鏡</em></h3>
@@ -681,7 +690,7 @@
   var PAD = 4;
   function src(i){
     var n = String(i).padStart(PAD,"0");
-    return "frames/frame_"+n+".jpg";
+    return "frames/frame_"+n+".webp";
   }
 
   var canvas = document.getElementById("frame");
@@ -881,6 +890,58 @@
       form.style.display = "none";
       document.getElementById("formSuccess").classList.add("show");
     });
+  }
+
+  /* ----- scroll-spy: highlight nav link of the section in view ----- */
+  var spyIds = ["about","product","pricing","contact"];
+  var navLinks = {};
+  spyIds.forEach(function(id){
+    navLinks[id] = document.querySelector('.nav-links a[href="#'+id+'"]');
+  });
+  function clearActive(){
+    spyIds.forEach(function(id){ if(navLinks[id]) navLinks[id].classList.remove("active"); });
+  }
+  if("IntersectionObserver" in window){
+    var spy = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          clearActive();
+          var link = navLinks[e.target.id];
+          if(link) link.classList.add("active");
+        }
+      });
+    }, {rootMargin:"-45% 0px -50% 0px", threshold:0});
+    spyIds.forEach(function(id){
+      var sec = document.getElementById(id);
+      if(sec) spy.observe(sec);
+    });
+  }
+
+  /* ----- background music: "試聽樂曲" toggle ----- */
+  var bgm = document.getElementById("bgm");
+  var playBtn = document.getElementById("playBtn");
+  var playIco = document.getElementById("playIco");
+  var playTxt = document.getElementById("playTxt");
+  if(bgm && playBtn){
+    function setPlaying(on){
+      playBtn.classList.toggle("playing", on);
+      playBtn.setAttribute("aria-pressed", on ? "true" : "false");
+      playIco.textContent = on ? "❚❚" : "▶";
+      playTxt.textContent = on ? "暫停樂曲" : "試聽樂曲";
+    }
+    playBtn.addEventListener("click", function(){
+      if(bgm.paused){
+        var p = bgm.play();
+        if(p && p.catch){ p.then(function(){ setPlaying(true); }).catch(function(){ setPlaying(false); }); }
+        else { setPlaying(true); }
+      } else {
+        bgm.pause();
+        setPlaying(false);
+      }
+    });
+    bgm.addEventListener("ended", function(){ setPlaying(false); });
+    bgm.addEventListener("pause", function(){ setPlaying(false); });
+    bgm.addEventListener("play", function(){ setPlaying(true); });
   }
 })();
 </script>
