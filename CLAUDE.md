@@ -43,7 +43,7 @@ Fixed chrome: frosted-glass `<nav>` (anchors into the content sections) and `#wi
 ### Two independent IIFEs in the `<script>`
 
 - **Showcase engine** (first IIFE): preloads all frames into an `images[]` array, then a scroll handler (rAF-throttled) computes progress and calls `render(progress)`, which (a) draws the current frame to the canvas, (b) sets each panel's opacity via the `panels` array of `[element, startProgress, endProgress]` ranges, and (c) updates the winder. `draw()` crops ~6% off the bottom of each source frame to hide the baked-in "Veo" watermark.
-- **Sections & interactions** (second IIFE): IntersectionObserver scroll-reveal (`.reveal` → `.in`), client-side contact-form validation + success swap, scroll-spy (highlights the nav link of the in-view section), and the background-music play/pause toggle.
+- **Sections & interactions** (second IIFE): IntersectionObserver scroll-reveal (`.reveal` → `.in`), contact-form handling (validate → AJAX POST → success swap; see Netlify Forms below), scroll-spy (highlights the nav link of the in-view section), and the background-music play/pause toggle.
 
 ### Two things that make the look work
 
@@ -53,6 +53,19 @@ Fixed chrome: frosted-glass `<nav>` (anchors into the content sections) and `#wi
 ### Accessibility floor to preserve
 
 `prefers-reduced-motion` disables ambient animations and shows `.reveal` content immediately; keyboard focus is visible; layout is responsive down to mobile (grids collapse to one column at 980px / 520px). Don't regress these.
+
+## Deployment & the contact form (Netlify Forms)
+
+The site is deployed on Netlify (auto-deploys on push to `main`): https://claudecode-web-design.netlify.app/
+
+The `#contactForm` submits to **Netlify Forms**. The wiring has two halves that must stay in sync:
+
+- **HTML markup Netlify detects at deploy:** `<form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">`, a hidden `<input name="form-name" value="contact">`, and an off-screen `bot-field` honeypot. Every field that should be captured needs a `name` attribute. If you rename the form, change `form-name` and the `name` to match.
+- **JS submit handler:** instead of a native submit it does `fetch("/", { method:"POST", body: new URLSearchParams(new FormData(form)) })`, then reveals `#formSuccess` on a 200 and re-enables the button + alerts on failure. Keep posting to `/` urlencoded — that's the endpoint Netlify intercepts.
+
+Gotchas (both bit us during setup):
+- **Form detection must be enabled** in the Netlify dashboard (Site configuration → Forms), and a form is only registered on a **deploy made after** detection is on. Symptom when it isn't: POST to `/` returns **404** (not 200), and no submissions appear.
+- The local `python3 -m http.server` returns **501** for POST, so the success path can't be tested locally — only the request firing. Validate the full flow against the deployed Netlify URL.
 
 ## Skills
 
