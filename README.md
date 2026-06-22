@@ -1,10 +1,20 @@
 # Aurelia — 沉浸式產品展示網頁
 
+[![Live Demo](https://img.shields.io/badge/Live_Demo-claudecode--web--design.netlify.app-C9A24B?style=flat-square)](https://claudecode-web-design.netlify.app/)
+[![Deploys by Netlify](https://img.shields.io/badge/Deploys_by-Netlify-00C7B7?style=flat-square&logo=netlify&logoColor=white)](https://app.netlify.com/sites/claudecode-web-design/deploys)
+[![Built with Claude Code](https://img.shields.io/badge/Built_with-Claude_Code-D97757?style=flat-square)](https://claude.com/claude-code)
+
 > 一具 19 世紀八角音樂盒「Aurelia」的沉浸式產品頁。隨著捲動,音樂盒從閤蓋、開蓋到瓷偶起舞逐格展開 —— Apple 產品頁式的 scroll-driven animation。
 
 ### 🔗 線上展示 Live Demo
 
 **https://claudecode-web-design.netlify.app/**
+
+![Aurelia 主視覺](docs/cover.jpg)
+
+> 隨捲動展開的逐幀動畫(實際捲動更滑順):
+>
+> ![捲動展開動畫](docs/demo.gif)
 
 ---
 
