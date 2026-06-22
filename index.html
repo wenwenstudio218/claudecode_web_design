@@ -335,6 +335,7 @@
   .contact-info .row .k{font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ormolu);margin-bottom:.4rem}
   .contact-info .row .v{color:var(--porcelain-dim);font-size:.92rem;line-height:1.7}
   .form-card{background:var(--glass);backdrop-filter:blur(20px) saturate(120%);-webkit-backdrop-filter:blur(20px) saturate(120%);border:1px solid var(--glass-line);border-radius:26px;padding:2.5rem}
+  .hp-field{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
   .field{margin-bottom:1.4rem}
   .field-row{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem}
   .field label{display:block;font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--porcelain-dim);margin-bottom:.6rem}
@@ -634,7 +635,9 @@
       </div>
 
       <div class="form-card">
-        <form id="contactForm" novalidate>
+        <form id="contactForm" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+          <input type="hidden" name="form-name" value="contact" />
+          <p class="hp-field"><label>請勿填寫此欄 <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
           <div class="field-row">
             <div class="field">
               <label for="cf-name">姓名</label>
@@ -877,18 +880,30 @@
 
   var form = document.getElementById("contactForm");
   if(form){
+    var submitBtn = form.querySelector('button[type="submit"]');
     form.addEventListener("submit", function(ev){
       ev.preventDefault();
       var name = (document.getElementById("cf-name").value || "").trim();
       var email = (document.getElementById("cf-email").value || "").trim();
       if(!name || !email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){
-        var firstBad = !name ? "cf-name" : "cf-email";
-        document.getElementById(firstBad).focus();
+        document.getElementById(!name ? "cf-name" : "cf-email").focus();
         return;
       }
-      document.getElementById("successName").textContent = name;
-      form.style.display = "none";
-      document.getElementById("formSuccess").classList.add("show");
+      if(submitBtn){ submitBtn.disabled = true; submitBtn.textContent = "送出中…"; }
+      // Submit to Netlify Forms, then reveal the success state.
+      fetch("/", {
+        method: "POST",
+        headers: {"Content-Type": "application/x-www-form-urlencoded"},
+        body: new URLSearchParams(new FormData(form)).toString()
+      }).then(function(res){
+        if(!res.ok){ throw new Error("HTTP " + res.status); }
+        document.getElementById("successName").textContent = name;
+        form.style.display = "none";
+        document.getElementById("formSuccess").classList.add("show");
+      }).catch(function(){
+        if(submitBtn){ submitBtn.disabled = false; submitBtn.textContent = "送出預約"; }
+        alert("送出時發生問題，請稍後再試，或直接來信 salon@maison-rouvel.com。");
+      });
     });
   }
 
